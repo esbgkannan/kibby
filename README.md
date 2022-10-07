@@ -33,7 +33,7 @@ python3 conservation_from_uniprot.py sample_data/uniprot.txt sample_data/annotat
 This repository contains the code and files needed to generate sequence embeddings using a pre-trained protein language model, then estimate sequence conservation using linear regression.
 ```
 # Download this repository
-git clone https://github.com/waylandy/Kibby
+git clone https://github.com/waylandy/kibby
 
 cd Kibby
 ```
