@@ -35,7 +35,7 @@ This repository contains the code and files needed to generate sequence embeddin
 # Download this repository
 git clone https://github.com/waylandy/kibby
 
-cd Kibby
+cd kibby
 ```
 
 If you are an advanced user with pre-generated sequence embeddings, our regression parameters for various pre-trained protein language model can be found under the "linear_models" directory. Parameters are stored and compressed numpy arrays and consist of the linear coefficients and intercept. To make predictions, simply take the dot product of the sequence embedding and the linear coefficients then add the intercept.
