@@ -18,6 +18,9 @@ Downloads AlphaFold models and UniProt domain annotations.
 Maps conservation scores to AlphaFold pdb files on the bfactor column.
 Draws a bar chart showing conservation alongside domain & structure annotations.
 
+For performance reasons, the default model is "esm2_t33_650M_UR50D", while the
+original manuscript uses results from "esm2_t36_3B_UR50D" which is also available.
+
 Usage: python3 conservation_from_uniprot.py accession_txt output_dir [options]
 
 """
