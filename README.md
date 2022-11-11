@@ -107,6 +107,9 @@ To see the help screen, use `python3 conservation_from_fasta.py -h`
 Estimate the conservation of each sequence in a fasta file using sequence embeddings.
 Sequence embeddings can be generated from any ESM2 protein language model.
 
+For performance reasons, the default model is "esm2_t33_650M_UR50D", while the
+original manuscript uses results from "esm2_t36_3B_UR50D" which is also available.
+
 Usage: python3 conservation_from_fasta.py input_fasta output_csv [options]
 
 optional arguments:
@@ -141,6 +144,9 @@ Sequence embeddings can be generated from any ESM2 protein language model.
 Downloads AlphaFold models and UniProt domain annotations.
 Maps conservation scores to AlphaFold pdb files on the bfactor column.
 Draws a bar chart showing conservation alongside domain & structure annotations.
+
+For performance reasons, the default model is "esm2_t33_650M_UR50D", while the
+original manuscript uses results from "esm2_t36_3B_UR50D" which is also available.
 
 Usage: python3 conservation_from_uniprot.py accession_txt output_dir [options]
 
