@@ -164,10 +164,50 @@ optional arguments:
   -dssp DSSP        The dssp binary for generating secondary structure annotations (default: dssp)
   -sleep SLEEP      How many seconds to wait between each entry (default: 0.5)
 ```
+# How to do this manually
 
-# Doing this from scratch
+This section describes the bare minimum code that is required for generating embedding-based conservation analysis.
 
-Detailed guide coming soon!
+First, we import the necesary modules.
+
+```
+import numpy as np
+import torch
+import esm
+```
+
+Next, we load a protein language model. Different protein language models may be loaded in different ways, but for this example, we will be using the ESM2 model with 650M parameters.
+
+```
+model, alphabet = esm.pretrained.esm2_t33_650M_UR50D() # the model
+batch_converter = alphabet.get_batch_converter() # the tokenizer
+model = model.eval() # disable dropout
+```
+
+Then, we take an example protein sequence and tokenize it using the batch converter.
+```
+sequence = 'GGVTTFVALYDYESRTETDLSFKKGERLQIVNNTEGDWWLAHSLSTGQTGYIPSNYVAPSDS'
+batch_tokens = batch_converter([[None,sequence]])[2]
+```
+
+After that, we can send the tokenized protein sequence into the language model to generate a sequence embedding vector. Special tokens are also removed from the embedding vector.
+```
+with torch.no_grad():
+    results = model(batch_tokens, repr_layers=[33], return_contacts=False)
+sequence_embedding = results["representations"][33][0][1:-1].numpy()    
+```
+
+Load the parameters of the appropriate trained linear regression model, all of which are provided in this repository.
+```
+linear = np.load('linear_models/esm2_t33_650M_UR50D.npz')
+coef, intercept = linear['coef'], linear['intercept']
+```
+
+Matrix multiply the embedding vector with the linear coefficients, add the intercept, then clip the range from zero to one. The result should be the conservation values.
+```
+conservation = np.clip(np.matmul(sequence_embedding, coef) + intercept, 0, 1)
+```
+
 
 
 
