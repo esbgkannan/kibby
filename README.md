@@ -4,7 +4,7 @@ This respository contains the code and dataset for:
 
 [**Alignment-free estimation of sequence conservation for identifying functional sites using protein sequence embeddings.**](https://doi.org/10.1093/bib/bbac599)\
 Wayland Yeung, Zhongliang Zhou, Sheng Li, Natarajan Kannan.\
-*Briefings in Bioinformatics.* (2023)\
+*Briefings in Bioinformatics.* (2023)
 
 # Quick start guide
 
